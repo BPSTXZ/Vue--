@@ -1,59 +1,68 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-	<meta charset="UTF-8">
-	<title>任务列表</title>
-	<link rel="stylesheet" type="text/css" href="renwu.css" />
-</head>
-
-<body>
-	<!--头部-->
-	<header>
-		<div class="head">任务计划表</div>
-	</header>
-	<!--功能主要区-->
-	<div class="main">
-		<h3 class="big-title">添加任务:</h3>
-		<input type="text" class="task-input" placeholder="   列如：搞事！搞事！搞事！      提示：按回车可以添加任务  " @keyup.enter="addup" v-model="todo" />
-		<ul class="u-l" v-show="list.length">
-			<li class="u-li">{{noCheckeLength}}个任务未完成</li>
-			<li class="u-li-3">
-				<a href="#all" style="border: 1px solid red;">所有任务</a>
-				<a href="#unfinished">未完成任务</a>
-				<a href="#finished">已完成任务</a>
-			</li>
-		</ul>
-		<h3 class="big-title">任务列表:</h3>
-		<input type="checkbox" v-model="allDone" v-show="noCheckeLength > 0" />
-		<span v-show="noCheckeLength > 0">完成所有任务</span>
-		<input type="checkbox" v-model="allDone" v-show="noCheckeLength === 0 && list.length" />
-		<span v-show="noCheckeLength === 0 && list.length">所有任务已完成(复按可取消)</span>
-		<button @click="ordelete" v-show="checkeLength > 0">删除已完成任务</button>
-		<div class="tasks">
-			<span class="no-title" v-show="!list.length">还没有添加任何任务</span>
-			<ul class="todo-list">
-				<li class="todo-com" :class="{la:item.isChecked,editing:item ===edtorTodos}" v-for="item in filteredList">
-					<div class="view">
-						<input v-model="item.isChecked" type="checkbox" class="toggle" />
-						<label v-bind:title="enen" @dblclick="detodo(item)">{{item.title}}</label>
-						<button @click="deleteTodo(item)" class="destroy">X</button>
-						<label class="time">{{item.time}}</label>
-					</div>
-					<input type="text" class="detodo" v-model="item.title" v-focus="edtorTodos ===item" @blur="edtodoed(item)" @keyup.enter="edtodoed(item)" @keyup.esc="canceltodo(item)" />
+	<head>
+		<meta charset="UTF-8">
+		<title>任务列表</title>
+		<link rel="stylesheet" type="text/css" href="renwu.css"/>
+	</head>
+	<body>		
+		<!--头部-->
+		<header>
+			<div class="head">任务计划表</div>
+		</header>
+		<!--功能主要区-->
+		<div class="main">
+			<h3 class="big-title">添加任务:</h3>
+			<input type="text"  
+				class="task-input"
+				 placeholder="   列如：搞事！搞事！搞事！      提示：按回车可以添加任务  "
+				 @keyup.enter="addup"
+				 v-model="todo"
+			/>
+			<ul class="u-l" v-show="list.length">
+				<li class="u-li">{{noCheckeLength}}个任务未完成</li>
+				<li class="u-li-3">
+					<a href="#all" style="border: 1px solid red;">所有任务</a>
+					<a href="#unfinished">未完成任务</a>
+					<a href="#finished">已完成任务</a>
 				</li>
-				<!--<li class="todo-com">
+			</ul>
+			<h3 class="big-title">任务列表:</h3>
+			<input type="checkbox"  v-model="allDone" v-show="noCheckeLength > 0"/>
+			<span v-show="noCheckeLength > 0">完成所有任务</span>
+			<input type="checkbox"  v-model="allDone" v-show="noCheckeLength === 0 && list.length"/>
+			<span v-show="noCheckeLength === 0 && list.length" >所有任务已完成(复按可取消)</span>
+			<button @click="ordelete" v-show="checkeLength > 0">删除已完成任务</button>
+			<div class="tasks">
+				<span class="no-title" v-show="!list.length">还没有添加任何任务</span>
+				<ul class="todo-list">
+					<li class="todo-com" :class="{la:item.isChecked,editing:item ===edtorTodos}" v-for="item in filteredList">
+						<div class="view">
+							<input v-model="item.isChecked" type="checkbox" class="toggle"  />
+							<label v-bind:title="enen" @dblclick="detodo(item)">{{item.title}}</label>						
+							<button @click="deleteTodo(item)" class="destroy">X</button>
+							<label class="time">{{item.time}}</label>
+						</div>
+						<input type="text" 
+							class="detodo" 
+							v-model="item.title" 
+							v-focus="edtorTodos ===item"
+							@blur="edtodoed(item)"
+							@keyup.enter="edtodoed(item)"
+							@keyup.esc="canceltodo(item)"
+							/>
+					</li>
+					<!--<li class="todo-com">
 						<div class="view">
 							<input type="checkbox" class="toggle"/>
 							<span>兜兜吃饭睡觉</span>
 							<button class="destroy">X</button>
 						</div>
 					</li>-->
-			</ul>
+				</ul>
+			</div>
 		</div>
-	</div>
-	<script src="./vue.js"></script>
-	<script src="renwu.js"></script>
-</body>
-
+		<script src="./vue.js"></script>
+		<script src="renwu.js"></script>
+	</body>
 </html>

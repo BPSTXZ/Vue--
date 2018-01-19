@@ -1,0 +1,13 @@
+npm config set loglevel http 显示过程
+npm config set registry "https://registry.npm.taobao.org"改淘宝下载
+https://github.com/maxwelldu/HTML5Course20170717课堂笔记
+http://www.hacg.cool/mp3/onj001.mp3
+
+1447163864
+txw6485290000.
+
+npm i -g gulp
+
+https://developer.android.google.cn/studio/install.html
+
+https://github.com/ksky521/wechat-jump-game-hack
